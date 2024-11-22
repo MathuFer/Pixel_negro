@@ -1,0 +1,109 @@
+.productos{
+  padding: 50px 0px;
+  justify-items: center;
+}
+
+.Nombre-card{
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.contenedor-producto{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.centro-card{
+  display: flex;
+  border: 1px solid white;
+  border-radius: 5px;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  margin: 5px;
+}
+
+.Footer-card{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px white solid;
+  width: 100%;
+  border-radius: 5px;
+}
+
+.anadir-boton{
+  background-color: #e4b400;
+  border-radius: 5px;
+  padding: 5px;
+  width: 35%;
+}
+
+.descripcion-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.producto{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  margin: 5px;
+  padding: 10px;
+  background-color: black;
+  border-radius: 5px;
+  color: white;
+  box-shadow: 2px 2px 10px rgb(255, 255, 255);
+}
+
+.producto .centro-card img{
+  min-width: 70%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 5px;
+ 
+}
+
+.producto h3{
+  margin: 10px 0px;
+}
+
+.producto p{
+  margin: 0px;
+}
+
+.boton-tienda{
+  width: 100%;
+  padding: 5px 35px;
+  background-color: #e4b400;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+
+@media (max-width: 768px) {
+  .producto {
+    width: 90%;
+  }
+}
+
+@media (max-width: 500px) {
+  .producto {
+    width: 45%; 
+  }
+}

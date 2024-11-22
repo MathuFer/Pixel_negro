@@ -1,0 +1,32 @@
+.Registro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0px 0px 0px;
+  
+}
+
+.Beneficios {
+  display: flex;
+  align-items: center;
+  margin: 15px;
+  box-shadow: 2px 2px 20px rgb(255, 255, 255);
+  padding: 35px;
+  background-color: black;
+  color: white;
+
+}
+
+
+@media (max-width: 768px) {
+  .Registro {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .Registro {
+    width: 45%; 
+  }
+}

@@ -1,0 +1,19 @@
+
+.Carrito{
+    margin: 100px 30px 50px 30px ;
+    box-shadow: 2px 2px 20px rgb(255, 255, 255);
+    padding: 35px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+
+.cantidades{
+    padding: 5px;
+}
+
+td{
+    text-align: center;
+    vertical-align: middle;
+}

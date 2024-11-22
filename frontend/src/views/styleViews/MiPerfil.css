@@ -1,0 +1,75 @@
+
+.contenedor-usuario{
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 15px 0px 15px;
+    padding: 50px;
+    height: 70vh;
+    
+
+    border-radius: 5px;
+    box-shadow: 2px 2px 20px rgb(255, 255, 255);
+    background-color: black;
+    color: white;
+}
+
+.Datos-usuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid white;
+    width: 50%;
+}
+
+.contenedor-compras{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+
+}
+
+.Datos-mis-compras {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: 95%;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid white;
+}
+
+.Datos-mis-favoritos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 50%;
+    width: 95%;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid white;
+}
+
+.favoritos-listado{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 85%;
+    font-size: x-small;
+    align-items: center;
+
+    border: 1px solid white;
+}
+
+.favorito-item {
+    border: 1px solid white;
+    width: 20%;
+    margin: 5px;
+    text-align: center;
+    
+}

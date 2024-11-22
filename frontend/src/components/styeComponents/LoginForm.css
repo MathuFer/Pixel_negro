@@ -1,0 +1,23 @@
+.login-container {
+  margin: 100px auto;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 20px rgb(255, 255, 255);
+  background-color: black;
+  color: white;
+  
+}
+
+.login-container .form-label {
+  color: #ffffff;
+}
+
+.reset-password-link {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+Button {
+  margin: 15px 0px;
+}
+

@@ -1,0 +1,19 @@
+.premium-benefits {
+  padding: 20px;
+  border-left: 1px solid white;
+}
+
+.premium-benefits h2 {
+  color: #ffffff; 
+  margin-bottom: 15px;
+}
+
+.premium-benefits ul {
+  list-style-type: disc; 
+  padding-left: 20px;
+}
+
+.premium-benefits li {
+  color: #ffffff;
+  margin-bottom: 8px;
+}

@@ -1,0 +1,11 @@
+.logo-nombre {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+body {
+  background: linear-gradient(#000 33%, transparent);
+  background-repeat: no-repeat;
+}
