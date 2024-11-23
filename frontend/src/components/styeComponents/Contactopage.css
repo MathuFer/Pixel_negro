@@ -1,0 +1,117 @@
+.contenedor-contacto {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    max-width: 95%;
+    margin: 100px auto;
+    box-shadow: 2px 2px 20px rgb(255, 255, 255);
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+
+
+}
+
+.info-empresa h2 {
+    font-size: xx-large;
+}
+
+.info-empresa {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: larger;
+}
+
+.info-empresa p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+
+.formulario-contacto {
+    width: 50%;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.campo-formulario {
+    margin-bottom: 15px;
+}
+
+.campo-formulario label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.campo-formulario input,
+.campo-formulario textarea {
+    width: 65%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.campo-formulario textarea {
+    resize: vertical;
+}
+
+.btn-enviar {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-enviar:hover {
+    background-color: #0056b3;
+}
+
+
+@media (max-width: 768px) {
+
+    .contenedor-contacto {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .info-empresa {
+        width: 100%;
+        font-size: small;
+    }
+
+    .info-empresa h2 {
+        font-size: large;
+    }
+
+    .formulario-contacto {
+        width: 100%;
+        
+    }
+
+    .campo-formulario input, .campo-formulario textarea {
+    width: 100%;
+    font-size: small;
+    }
+
+}
+
+@media (max-width: 500px) {
+    
+
+}

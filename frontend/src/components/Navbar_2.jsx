@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { ProductosContext } from "../context/ProductosProvider";
 import { AuthContext } from "../context/AuthProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styeComponents/navbar.css"
 
 const Navbar2 = () => {
   const { cart } = useContext(ProductosContext);

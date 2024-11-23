@@ -6,8 +6,9 @@ import InicioSesion from "./views/InicioSesion";
 import Shopping from "./views/Shopping";
 import MiPerfil from "./views/MiPerfil";
 import Tienda from "./views/Tienda";
+import Contacto from "./views/Contacto";
 import VistaProducto from "./views/VistaProducto";
-import AuthProvider from "./context/AuthProvider";  // Importación correcta sin llaves
+import AuthProvider from "./context/AuthProvider"; 
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/tienda" element={<Tienda />} />
           <Route path="/registro" element={<RegistroUsuario />} />
           <Route path="/inicioSesion" element={<InicioSesion />} />
+          <Route path="/contacto" element={<Contacto />} />
           <Route path="/cartShopping" element={<Shopping />} />
           <Route path="/product/:id" element={<VistaProducto />} />
           <Route path="/perfil/:id" element={<MiPerfil />} />

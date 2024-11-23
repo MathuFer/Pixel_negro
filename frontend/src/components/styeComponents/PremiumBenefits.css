@@ -17,3 +17,17 @@
   color: #ffffff;
   margin-bottom: 8px;
 }
+
+
+@media (max-width: 768px) {
+  .premium-benefits {
+    font-size: x-small;
+  }
+  .premium-benefits h2{
+    font-size: medium;
+  }
+}
+
+@media (max-width: 500px) {
+  
+}

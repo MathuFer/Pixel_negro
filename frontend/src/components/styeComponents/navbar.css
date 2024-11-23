@@ -1,0 +1,40 @@
+@media (max-width: 768px) {
+
+
+.container h6{
+    font-size: small;
+}
+
+.container h4{
+    font-size: smaller;
+}
+
+.container {
+    flex-direction: column;
+}
+
+.container .logo-nombre{
+    padding: 2px;
+}
+
+}
+
+@media (max-width: 500px) {
+
+.container h6{
+        font-size: small;
+    }
+    
+.container h4{
+        font-size: smaller;
+    }
+    
+.container {
+        flex-direction: column;
+    }
+    
+.container .logo-nombre{
+        padding: 2px;
+    }
+
+}

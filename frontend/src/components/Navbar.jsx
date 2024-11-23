@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProductosContext } from "../context/ProductosProvider";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./styeComponents/navbar.css"
 
 const Navbar = () => {
   const { cart } = useContext(ProductosContext);
@@ -23,7 +24,7 @@ const Navbar = () => {
             <h6 className="mb-0">Tienda |</h6>
           </Link>
 
-          <Link to="/" className="logo-nombre mx-1 mb-0">
+          <Link to="/Contacto" className="logo-nombre mx-1 mb-0">
             <h6 className="mb-0">Contacto |</h6>
           </Link>
 

@@ -119,7 +119,7 @@ const RegistrationForm = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Register
+          Registrar
         </Button>
       </Form>
       {error && <Alert variant="danger">{error}</Alert>}

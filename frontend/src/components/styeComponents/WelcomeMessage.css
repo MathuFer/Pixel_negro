@@ -24,3 +24,16 @@
   font-weight: bold;
   color: #007bff; /* Blue for emphasis - change as needed */
 }
+
+
+@media (max-width: 768px) {
+  .welcome-message {
+    font-size: small;
+    padding: 15px;
+  }
+
+}
+
+@media (max-width: 500px) {
+ 
+}
