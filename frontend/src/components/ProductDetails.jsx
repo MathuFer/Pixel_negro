@@ -5,7 +5,7 @@ import "./styeComponents/ProductDetails.css";
 
 function ProductDetails() {
   const { id } = useParams();
-  const { productos, cart, setCart } = useContext(ProductosContext);
+  const { productos, setCart } = useContext(ProductosContext);
   const [item, setItem] = useState(null);
 
   useEffect(() => {
@@ -45,9 +45,7 @@ function ProductDetails() {
     <div className="producto-detalle">
       <div className="contenedor-detalle">
         <div key={item.id} className="detalle-producto">
-          {item.img && (
-            <img src={item.img} alt={item.name} className="imagen-producto" />
-          )}
+          <img src={item.img} className="imagen-producto" />
           <h1>{item.name}</h1>
           <p>{item.desc}</p>
           <p className="precio">

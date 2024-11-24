@@ -25,47 +25,53 @@ const ShoppingCart = () => {
         {groupedCart.length === 0 ? (
           <p>Tu carrito está vacío.</p>
         ) : (
-          <Table className="table table-dark table-striped text-center">
-            <thead>
-              <tr>
-                <th>Producto</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Eliminar</th>
-              </tr>
-            </thead>
-            <tbody>
-              {groupedCart.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <img src={item.img} alt={item.desc} style={{ width: "80px", height: "80px", objectFit: "cover" }} />
-                  </td>
-                  <td>{item.desc}</td>
-                  <td>{item.price.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</td>
-                  <td>
-                    <span>{item.quantity}</span> {}
-                  </td>
-                  <td>
-                    <Button
-                      variant="danger"
-                      size="sm"
-                      onClick={() => eliminarDelPedido(item.id)}
-                    >
-                      Eliminar
-                    </Button>
+          <div className="table-responsive">
+            <Table className="table table-dark table-striped text-center">
+              <thead>
+                <tr>
+                  <th>Producto</th>
+                  <th>Descripción</th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Eliminar</th>
+                </tr>
+              </thead>
+              <tbody>
+                {groupedCart.map((item) => (
+                  <tr key={item.id}>
+                    <td>
+                      <img
+                        src={item.img}
+                        alt={item.desc}
+                        className="table-img"
+                      />
+                    </td>
+                    <td>{item.desc}</td>
+                    <td>{item.price.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</td>
+                    <td>{item.quantity}</td>
+                    <td>
+                      <Button
+                        variant="danger"
+                        size="sm"
+                        onClick={() => eliminarDelPedido(item.id)}
+                      >
+                        Eliminar
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colSpan={5} align="right">
+                    <h3>
+                      <strong>Total:</strong> {totalPrice.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}
+                    </h3>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colSpan={5} align="right">
-                  <h3><strong>Total:</strong> {totalPrice.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</h3>
-                </td>
-              </tr>
-            </tfoot>
-          </Table>
+              </tfoot>
+            </Table>
+          </div>
         )}
       </Container>
     </div>
@@ -73,3 +79,4 @@ const ShoppingCart = () => {
 };
 
 export default ShoppingCart;
+
