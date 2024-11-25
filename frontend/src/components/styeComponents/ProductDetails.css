@@ -23,8 +23,8 @@
 }
 
 .imagen-producto {
-  width: 75%;
-  height: 300px;
+  width: 500px;
+  height: auto;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -79,6 +79,13 @@
 @media (max-width: 768px) {
   .detalle-producto {
     width: 80%;
+  }
+
+  .imagen-producto {
+    width: 85%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
   }
 }
 

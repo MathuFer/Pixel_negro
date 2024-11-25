@@ -72,12 +72,37 @@
 
 .favorito-item {
     border: 1px solid white;
-    min-width: 30%;
+    min-width: 25%;
+    max-width: 25%;
     padding: 10px 0px;
     margin: 5px;
     text-align: center;
+    box-shadow: 1px 1px 10px rgb(255, 255, 255);
+
     
 }
+
+.favorito-item img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.eliminar-favorito-btn {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 2px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 0px;
+    
+  }
+  
+  .eliminar-favorito-btn:hover {
+    background-color: #d93636;
+  }
+   
 
 
 @media (max-width: 768px) {
@@ -119,6 +144,12 @@
         border: 1px solid white;
         box-shadow: 1px 1px 5px rgb(255, 255, 255);
 
+    }
+
+    .favorito-item img{
+        width: 85%;
+        height: 80%;
+        object-fit: cover;
     }
     
   }

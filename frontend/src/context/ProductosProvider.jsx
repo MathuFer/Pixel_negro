@@ -73,6 +73,11 @@ const ProductosProvider = ({ children }) => {
     }
   };
 
+  const eliminarDelFavorito = (id) => {
+    setFavoritos((prevFavoritos) => prevFavoritos.filter((fav) => fav.id !== id));
+  };
+  
+
   const eliminarDelPedido = (id) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
@@ -103,6 +108,7 @@ const ProductosProvider = ({ children }) => {
         setCart,
         favoritos,
         toggleFavorito,
+        eliminarDelFavorito,
         eliminarDelPedido,
         loggedInUser,
         loginUser,

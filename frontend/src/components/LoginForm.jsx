@@ -38,6 +38,7 @@ function LoginForm() {
       setLoginError("");
       login(user);
       navigate(`/perfil/${user.id}`);
+
     } else {
       console.log("Credenciales incorrectas");
       setLoginError("Correo o contraseña incorrectos");

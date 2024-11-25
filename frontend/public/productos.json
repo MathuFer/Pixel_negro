@@ -2,7 +2,7 @@
   {
     "desc": "Aros Tiburon",
     "id": "P001",
-    "img": "./assets/Productos/1.png",
+    "img": "../assets/Productos/1.png",
     "name": "Tiburon",
     "price": 5000,
     "categoria": "Aros"
@@ -10,7 +10,7 @@
   {
     "desc": "Aros Calavera",
     "id": "P002",
-    "img": "./assets/Productos/2.png",
+    "img": "../assets/Productos/2.png",
     "name": "Calavera",
     "price": 6000,
     "categoria": "Aros"
@@ -18,7 +18,7 @@
   {
     "desc": "Aros Totoro",
     "id": "P003",
-    "img": "./assets/Productos/3.png",
+    "img": "../assets/Productos/3.png",
     "name": "Totoro",
     "price": 5000,
     "categoria": "Aros"
@@ -26,7 +26,7 @@
   {
     "desc": "Aros Ying-Yang",
     "id": "P004",
-    "img": "./assets/Productos/4.png",
+    "img": "../assets/Productos/4.png",
     "name": "Ying Yang",
     "price": 5000,
     "categoria": "Aros"
@@ -34,7 +34,7 @@
   {
     "desc": "Aros Corazon Arcoiris",
     "id": "P005",
-    "img": "./assets/Productos/5.png",
+    "img": "../assets/Productos/5.png",
     "name": "Corazon Arcoiris",
     "price": 5000,
     "categoria": "Aros"
@@ -42,7 +42,7 @@
   {
     "desc": "Aros Huellitas",
     "id": "P006",
-    "img": "./assets/Productos/6.png",
+    "img": "../assets/Productos/6.png",
     "name": "Huellitas",
     "price": 5000,
     "categoria": "Aros"
@@ -50,14 +50,14 @@
   {
     "desc": "Aros Rombos",
     "id": "P007",
-    "img": "./assets/Productos/7.png",
+    "img": "../assets/Productos/7.png",
     "name": "Rombos",
     "price": 5000,
     "categoria": "Aros"
   },{
     "desc": "Aros Fantasmas",
     "id": "P008",
-    "img": "./assets/Productos/8.png",
+    "img": "../assets/Productos/8.png",
     "name": "Fantasmas",
     "price": 6000,
     "categoria": "Aros"
@@ -65,7 +65,7 @@
   {
     "desc": "Aros Yoshi",
     "id": "P012",
-    "img": "./assets/Productos/12.png",
+    "img": "../assets/Productos/12.png",
     "name": "Yoshi",
     "price": 8000,
     "categoria": "Aros"
@@ -73,7 +73,7 @@
   {
     "desc": "Aros Samurai",
     "id": "P013",
-    "img": "./assets/Productos/13.png",
+    "img": "../assets/Productos/13.png",
     "name": "Samurai",
     "price": 7500,
     "categoria": "Aros"
@@ -81,7 +81,7 @@
   {
     "desc": "Aros Helados",
     "id": "P011",
-    "img": "./assets/Productos/11.png",
+    "img": "../assets/Productos/11.png",
     "name": "Helados",
     "price": 7000,
     "categoria": "Aros"
@@ -89,7 +89,7 @@
   {
     "desc": "Aros Mariposas",
     "id": "P021",
-    "img": "./assets/Productos/21.png",
+    "img": "../assets/Productos/21.png",
     "name": "Mariposas",
     "price": 9000,
     "categoria": "Aros"
@@ -97,7 +97,7 @@
   {
     "desc": "Aros Hongos",
     "id": "P022",
-    "img": "./assets/Productos/22.png",
+    "img": "../assets/Productos/22.png",
     "name": "Hongos",
     "price": 7500,
     "categoria": "Aros"
@@ -105,7 +105,7 @@
   {
     "desc": "Chupón Michael Jackson",
     "id": "P023",
-    "img": "./assets/Productos/Chupon Michael.png",
+    "img": "../assets/Productos/Chupon Michael.png",
     "name": "Chupón M. Jackson",
     "price": 10000,
     "categoria": "Chupon"
@@ -113,7 +113,7 @@
   {
     "desc": "Chupón Ursula",
     "id": "P024",
-    "img": "./assets/Productos/Chupon Ursula.png",
+    "img": "../assets/Productos/Chupon Ursula.png",
     "name": "Chupón Ursula",
     "price": 10000,
     "categoria": "Chupon"
@@ -121,7 +121,7 @@
   {
     "desc": "Imán Luigui + Fantasma",
     "id": "P025",
-    "img": "./assets/Productos/Imanes.png",
+    "img": "../assets/Productos/Imanes.png",
     "name": "Luigui",
     "price": 10000,
     "categoria": "Imanes"
@@ -129,7 +129,7 @@
   {
     "desc": "Llavero Perro",
     "id": "P026",
-    "img": "./assets/Productos/Llavero Perro.png",
+    "img": "../assets/Productos/Llavero Perro.png",
     "name": "Llavero Perro",
     "price": 8500,
     "categoria": "Llaveros"
@@ -137,7 +137,7 @@
   {
     "desc": "Llavero Gatos",
     "id": "P027",
-    "img": "./assets/Productos/Llavero Gatos.png",
+    "img": "../assets/Productos/Llavero Gatos.png",
     "name": "Llavero Gatos",
     "price": 8500,
     "categoria": "Llaveros"
@@ -145,7 +145,7 @@
   {
     "desc": "Llavero Mario",
     "id": "P028",
-    "img": "./assets/Productos/Llavero Mario.png",
+    "img": "../assets/Productos/Llavero Mario.png",
     "name": "Llavero Mario",
     "price": 8500,
     "categoria": "Llaveros"
@@ -153,7 +153,7 @@
   {
     "desc": "Llavero Steven Universe",
     "id": "P029",
-    "img": "./assets/Productos/Llavero Steven Universe.png",
+    "img": "../assets/Productos/Llavero Steven Universe.png",
     "name": "Llavero S. Universe",
     "price": 8500,
     "categoria": "Llaveros"
@@ -161,7 +161,7 @@
   {
     "desc": "Llavero Stitch",
     "id": "P030",
-    "img": "./assets/Productos/Llavero Stitch.png",
+    "img": "../assets/Productos/Llavero Stitch.png",
     "name": "Llavero Stitch",
     "price": 8500,
     "categoria": "Llaveros"
@@ -169,7 +169,7 @@
   {
     "desc": "Marcador Snitch",
     "id": "P031",
-    "img": "./assets/Productos/Marcados libro 1.png",
+    "img": "../assets/Productos/Marcados libro 1.png",
     "name": "Marcador Snitch",
     "price": 8500,
     "categoria": "Marcador"
@@ -177,7 +177,7 @@
   {
     "desc": "Marcador Buho",
     "id": "P032",
-    "img": "./assets/Productos/Marcador libro 3.png",
+    "img": "../assets/Productos/Marcador libro 3.png",
     "name": "Marcador Buho",
     "price": 8500,
     "categoria": "Marcador"

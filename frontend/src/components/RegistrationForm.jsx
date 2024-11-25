@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import "../components/styeComponents/RegistrationForm.css";
@@ -23,32 +22,29 @@ const RegistrationForm = () => {
     setError(null);
     setSuccess(false);
 
-    // Basic validation
     if (!formData.name || !formData.email || !formData.password) {
       setError("Por favor, complete la información requerida.");
       return;
     }
 
     try {
-      // SIMULATED API CALL - REPLACE THIS WITH YOUR ACTUAL API CALL
       const response = await fetch("/api/register", {
-        //Your actual API endpoint
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
-        const errorData = await response.json(); //Try to get error details from the server
+        const errorData = await response.json();
         const errorMessage =
           errorData.message || `HTTP error! status: ${response.status}`;
         throw new Error(errorMessage);
       }
 
-      setSuccess(true); //Set success state after a successful API call
-      setFormData({ name: "", email: "", password: "", fechaNacimiento:"", direccion:""}); // Clear the form
+      setSuccess(true);
+      setFormData({ name: "", email: "", password: "", fechaNacimiento:"", direccion:""}); 
     } catch (error) {
-      setError(error.message); //Handle errors from the API call
+      setError(error.message);
       console.error("Registration error:", error);
     }
   };
