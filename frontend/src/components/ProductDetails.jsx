@@ -55,7 +55,7 @@ function ProductDetails() {
             Añadir al carrito
           </button>
           <button className="boton-tienda">
-            <a href="/tienda" className="enlace-tienda">Volver a la Tienda</a>
+            <a href="/Tienda" className="enlace-tienda">Volver a la Tienda</a>
           </button>
         </div>
       </div>
