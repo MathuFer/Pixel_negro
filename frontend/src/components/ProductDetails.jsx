@@ -54,9 +54,9 @@ function ProductDetails() {
           <button className="ver-detalles" onClick={addToCart}>
             Añadir al carrito
           </button>
-          <button className="boton-tienda">
-            <a href="/Tienda" className="enlace-tienda">Volver a la Tienda</a>
-          </button>
+              <Link to="/tienda">
+          <button className="boton-tienda">Tienda</button>
+              </Link>
         </div>
       </div>
     </div>
