@@ -1,7 +1,9 @@
-Pixel Negro Backend 
+Pixel Negro Backend
 
 Por: Iván Arellan y Mathias Hausdorf
 
-Backen funcional: 
+Backen funcional:
 
-usuario de prueba: user@gmail.com , 1234 
+usuario de prueba: user@gmail.com , 1234
+
+Integración
