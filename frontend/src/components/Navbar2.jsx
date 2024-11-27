@@ -2,16 +2,24 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { ProductosContext } from "../context/ProductosProvider";
 import { AuthContext } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom"; 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styeComponents/navbar.css"
 
 const Navbar2 = () => {
   const { cart } = useContext(ProductosContext);
   const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   const totalItemsInCart = cart.reduce(
     (total, item) => total + (item.quantity || 0),
     0
   );
+
+  const handleLogout = () => {
+    logout(); 
+    navigate("/");
+  };
+
 
   return (
     <div className="navbar fixed-top bg-black text-white py-3">
@@ -37,15 +45,13 @@ const Navbar2 = () => {
           </Link>
         </div>
         <div className="d-flex justify-content-end align-items-center">
-          {user && (
-            <Link to={`/perfil/${user.id}`} className="logo-nombre mx-1 mb-0">
-              <h6>Mi Perfil |</h6>
-            </Link>
-          )}
-          <div className="logo-nombre mx-1 mb-0">
-            <h6 onClick={logout}>Cerrar sesión </h6>
-          </div>
-          
+            {user && (
+              <Link to={`/perfil/${user.id}`} className="logo-nombre mx-1 mb-0" >
+                <h6 className="logo-nombre mx-1 mb-0">Mi Perfil |</h6>
+              </Link>
+            )}
+              {user && <h6 className="logo-nombre mx-1 mb-0" onClick={handleLogout}>Cerrar sesión</h6>}
+
         </div>
       </div>
     </div>

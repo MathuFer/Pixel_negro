@@ -4,8 +4,7 @@ export const ProductosContext = createContext();
 
 const ProductosProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
-  const [productosAleatorios, setProductosAleatorios] = useState([]); // Asegúrate de tener este estado
-  const [clients, setClients] = useState([]); 
+  const [productosAleatorios, setProductosAleatorios] = useState([]);
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
@@ -13,10 +12,6 @@ const ProductosProvider = ({ children }) => {
   const [favoritos, setFavoritos] = useState(() => {
     const storedFavoritos = localStorage.getItem("favoritos");
     return storedFavoritos ? JSON.parse(storedFavoritos) : [];
-  });
-  const [loggedInUser, setLoggedInUser] = useState(() => {
-    const storedUser = localStorage.getItem("loggedInUser");
-    return storedUser ? JSON.parse(storedUser) : null;
   });
 
   useEffect(() => {
@@ -30,13 +25,6 @@ const ProductosProvider = ({ children }) => {
         const productos = await productosResponse.json();
         setProductos(productos);
 
-  
-        const clientsResponse = await fetch("/Clients.json");
-        if (!clientsResponse.ok) {
-          throw new Error("No se pudieron cargar los datos de usuarios");
-        }
-        const clients = await clientsResponse.json();
-        setClients(clients);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -55,13 +43,6 @@ const ProductosProvider = ({ children }) => {
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
   }, [favoritos]);
 
-  useEffect(() => {
-    if (loggedInUser) {
-      localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
-    } else {
-      localStorage.removeItem("loggedInUser");
-    }
-  }, [loggedInUser]);
 
   const toggleFavorito = (id) => {
     if (favoritos.some((fav) => fav.id === id)) {
@@ -83,21 +64,6 @@ const ProductosProvider = ({ children }) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-
-  const loginUser = (email, password) => {
-    const user = clients.find(
-      (client) => client.Email === email && client.Pasword === password
-    );
-    if (user) {
-      setLoggedInUser(user);
-    } else {
-      alert("Credenciales incorrectas");
-    }
-  };
-
-  const logoutUser = () => {
-    setLoggedInUser(null);
-  };
 
   // Filtrar productos por categoría
   
@@ -138,9 +104,9 @@ const getRandomProducts = (count = 3) => {
 };
 
 const seleccionarProductosAleatorios = () => {
-  const productosMezclados = [...productos].sort(() => Math.random() - 0.5); // Mezcla los productos
-  const productosSeleccionados = productosMezclados.slice(0, 3); // Selecciona los primeros 3
-  setProductosAleatorios(productosSeleccionados); // Actualiza el estado con los productos aleatorios
+  const productosMezclados = [...productos].sort(() => Math.random() - 0.5); 
+  const productosSeleccionados = productosMezclados.slice(0, 3);
+  setProductosAleatorios(productosSeleccionados); 
 };
 
   return (
@@ -148,16 +114,12 @@ const seleccionarProductosAleatorios = () => {
         value={{
           productos,
           setProductos,
-          clients,
           cart,
           setCart,
           favoritos,
           toggleFavorito,
           eliminarDelFavorito,
           eliminarDelPedido,
-          loggedInUser,
-          loginUser,
-          logoutUser,
           getFilteredProducts,
           productosAleatorios,
           seleccionarProductosAleatorios,

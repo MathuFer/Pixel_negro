@@ -16,10 +16,26 @@
 .Datos-usuario{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     border: 1px solid white;
     width: 50%;
+    border-radius: 5px;
+}
+
+.titulo-usuario{
+    padding: 15px;
+    height: 20%;
+}
+
+
+.info-usuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 15px;
+    height: 80%;
+    width: 95%;
 }
 
 .contenedor-compras{
@@ -37,9 +53,11 @@
     align-items: center;
     height: 50%;
     width: 95%;
-    margin: 5px;
+    margin-bottom: 1px;
     padding: 10px;
     border: 1px solid white;
+    border-radius: 5px;
+    
 }
 
 .Datos-mis-favoritos{
@@ -49,9 +67,10 @@
     align-items: center;
     height: 50%;
     width: 95%;
-    margin: 5px;
     padding: 10px;
     border: 1px solid white;
+    margin-top: 1px;
+    border-radius: 5px;
     
 }
 
