@@ -25,7 +25,7 @@ const Navbar2 = () => {
             <h6 className="mb-0">Tienda |</h6>
           </Link>
 
-          <Link to="/" className="logo-nombre mx-1 mb-0">
+          <Link to="/Contacto" className="logo-nombre mx-1 mb-0">
             <h6 className="mb-0">Contacto |</h6>
           </Link>
 

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ProductosContext } from "../context/ProductosProvider";
-import Navbar2 from "../components/Navbar_2";
+import Navbar2 from "../components/Navbar2";
 import Footer from "../components/Footer";
 import "./styleViews/MiPerfil.css";
 import Favoritos from "../components/Favoritos";

@@ -56,24 +56,26 @@
   background-color: #c49300;
 }
 
-.boton-tienda {
-  margin-top: 20px;
-  padding: 10px 25px;
-  background-color: #333;
-  color: white;
-  border: none;
+
+.boton-pag-detalles {
+  padding: 10px 0px;
+  width: 75%;
+  background-color: #e4b400;
+  color: black;
+  text-decoration: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  
 }
+
+.estilo-link{
+  width: 100%;
+}
+
 
 .boton-tienda:hover {
   background-color: #555;
-}
-
-.enlace-tienda {
-  text-decoration: none;
-  color: white;
 }
 
 @media (max-width: 768px) {

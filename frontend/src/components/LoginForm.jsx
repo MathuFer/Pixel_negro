@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import "../components/styeComponents/LoginForm.css";
 import { AuthContext } from "../context/AuthProvider";
+import "../components/styeComponents/LoginForm.css";
 
 function LoginForm() {
   const [formData, setFormData] = useState({

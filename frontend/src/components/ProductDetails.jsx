@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { ProductosContext } from "../context/ProductosProvider";
 import "./styeComponents/ProductDetails.css";
 
@@ -51,12 +51,12 @@ function ProductDetails() {
           <p className="precio">
             Precio: {item.price.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}
           </p>
-          <button className="ver-detalles" onClick={addToCart}>
+          <button className="boton-pag-detalles" onClick={addToCart}>
             Añadir al carrito
           </button>
-              <Link to="/tienda">
-          <button className="boton-tienda">Tienda</button>
-              </Link>
+          <Link className="estilo-link" to="/tienda">
+          <button className="boton-pag-detalles">Tienda</button>
+          </Link>              
         </div>
       </div>
     </div>

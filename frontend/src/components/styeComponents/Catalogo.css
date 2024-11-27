@@ -75,6 +75,11 @@
     background-color: #d39e00;
   }
 
+  .favorito-boton-catalogo{
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+  }
 
   #category{
     margin: 10px;

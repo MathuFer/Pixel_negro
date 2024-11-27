@@ -21,8 +21,8 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    setIsAuthenticated(false);
     setUser(null);
+    setIsAuthenticated(false);
     localStorage.removeItem("authUser");
   };
 
@@ -34,3 +34,4 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+

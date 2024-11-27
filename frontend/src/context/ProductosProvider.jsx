@@ -4,6 +4,7 @@ export const ProductosContext = createContext();
 
 const ProductosProvider = ({ children }) => {
   const [productos, setProductos] = useState([]);
+  const [productosAleatorios, setProductosAleatorios] = useState([]); // Asegúrate de tener este estado
   const [clients, setClients] = useState([]); 
   const [cart, setCart] = useState(() => {
     const storedCart = localStorage.getItem("cart");
@@ -98,25 +99,76 @@ const ProductosProvider = ({ children }) => {
     setLoggedInUser(null);
   };
 
+  // Filtrar productos por categoría
+  
+const getFilteredProducts = (selectedCategory) => {
+  return selectedCategory === "all"
+    ? productos
+    : productos.filter((product) => product.categoria === selectedCategory);
+};
+
+// Obtener las categorías únicas
+
+const getCategories = () => {
+  return ["all", ...new Set(productos.map((product) => product.categoria))];
+};
+
+// Agregar al carrito
+
+const addToCart = (id) => {
+  const existingProduct = cart.find((producto) => producto.id === id);
+
+  if (existingProduct) {
+    setCart(
+      cart.map((producto) =>
+        producto.id === id ? { ...producto, quantity: producto.quantity + 1 } : producto
+      )
+    );
+  } else {
+    const productToAdd = productos.find((producto) => producto.id === id);
+    setCart([...cart, { ...productToAdd, quantity: 1 }]);
+  }
+};
+
+// Efecto 3 imagenes aleatorias en la portada
+
+const getRandomProducts = (count = 3) => {
+  const shuffled = [...productos].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count);
+};
+
+const seleccionarProductosAleatorios = () => {
+  const productosMezclados = [...productos].sort(() => Math.random() - 0.5); // Mezcla los productos
+  const productosSeleccionados = productosMezclados.slice(0, 3); // Selecciona los primeros 3
+  setProductosAleatorios(productosSeleccionados); // Actualiza el estado con los productos aleatorios
+};
+
   return (
     <ProductosContext.Provider
-      value={{
-        productos,
-        setProductos,
-        clients,
-        cart,
-        setCart,
-        favoritos,
-        toggleFavorito,
-        eliminarDelFavorito,
-        eliminarDelPedido,
-        loggedInUser,
-        loginUser,
-        logoutUser,
-      }}
-    >
-      {children}
+        value={{
+          productos,
+          setProductos,
+          clients,
+          cart,
+          setCart,
+          favoritos,
+          toggleFavorito,
+          eliminarDelFavorito,
+          eliminarDelPedido,
+          loggedInUser,
+          loginUser,
+          logoutUser,
+          getFilteredProducts,
+          productosAleatorios,
+          seleccionarProductosAleatorios,
+          getCategories,
+          addToCart,
+          getRandomProducts,
+        }}
+      >
+        {children}
     </ProductosContext.Provider>
+
   );
 };
 
