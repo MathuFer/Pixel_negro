@@ -2,14 +2,17 @@ const express = require("express");
 const { Pool } = require("pg");
 require("dotenv").config();
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Reemplaza con tu URL de frontend
+  origin: "http://localhost:5173", // Reemplaza con tu URL de frontend
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
+
+app.use(express.json());
+app.use(cors(corsOptions));
 
 // Configura la conexión a la base de datos
 const pool = new Pool({
@@ -21,9 +24,9 @@ const pool = new Pool({
   port: parseInt(process.env.DATABASE_PORT, 10), // Parsear a entero
 });
 
-// Middleware para parsear JSON
-app.use(express.json());
-app.use(cors(corsOptions));
+app.get("/api/test", (req, res) => {
+  res.json({ message: "CORS funcionando correctamente!" });
+});
 
 // Usuarios
 const usuariosRoutes = require("./routes/usuarios");

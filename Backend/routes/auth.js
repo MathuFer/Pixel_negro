@@ -18,6 +18,7 @@ const pool = new Pool({
 
 // Ruta para iniciar sesión
 router.post("/login", async (req, res) => {
+  console.log("Solicitud POST /login recibida:", req.body);
   const { email, contraseña } = req.body;
   try {
     const result = await pool.query(
@@ -32,8 +33,8 @@ router.post("/login", async (req, res) => {
 
     console.log("Usuario encontrado:", user);
 
-    const token = generateToken(user); //Aquí pasas el objeto user
-    res.json({ token });
+    const token = generateToken(user);
+    res.json({ token: token, usuariosid: user.usuariosid }); // Aquí se agrega usuarioID
   } catch (error) {
     console.error("Error en la ruta /login:", error);
     res.status(500).json({ message: "Error del servidor" });

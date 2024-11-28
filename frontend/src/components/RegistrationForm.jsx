@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import "../components/styeComponents/RegistrationForm.css";
+
+
+const URL_BASE = import.meta.env.VITE_URL_BASE
+console.log(URL_BASE)
+
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    nombre: "",
     email: "",
-    password: "",
-    fechaNacimiento: "",
-    direccion:""
-
+    contraseña: "",
+    direccion: "",
   });
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -22,13 +25,13 @@ const RegistrationForm = () => {
     setError(null);
     setSuccess(false);
 
-    if (!formData.name || !formData.email || !formData.password) {
+    if (!formData.nombre || !formData.email || !formData.contraseña) {
       setError("Por favor, complete la información requerida.");
       return;
     }
 
     try {
-      const response = await fetch("/api/register", {
+      const response = await fetch(URL_BASE + "/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -42,7 +45,12 @@ const RegistrationForm = () => {
       }
 
       setSuccess(true);
-      setFormData({ name: "", email: "", password: "", fechaNacimiento:"", direccion:""}); 
+      setFormData({
+        nombre: "",
+        email: "",
+        contraseña: "",
+        direccion: "",
+      });
     } catch (error) {
       setError(error.message);
       console.error("Registration error:", error);
@@ -59,7 +67,7 @@ const RegistrationForm = () => {
           <Form.Control
             type="text"
             placeholder="Ingresar su nombre y apellido"
-            name="name"
+            name="nombre"
             value={formData.name}
             onChange={handleChange}
             required
@@ -83,20 +91,8 @@ const RegistrationForm = () => {
           <Form.Control
             type="password"
             placeholder="Ingresa una contraseña"
-            name="password"
+            name="contraseña"
             value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formBasicFechaNacimiento">
-          <Form.Label>Fecha de nacimiento</Form.Label>
-          <Form.Control
-            type="date"
-            placeholder="Ingresar su fecha de nacimiento"
-            name="nacimiento"
-            value={formData.nacimiento}
             onChange={handleChange}
             required
           />
