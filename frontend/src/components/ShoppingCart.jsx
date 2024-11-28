@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { Container, Table, Button } from "react-bootstrap";
 import { ProductosContext } from "../context/ProductosProvider";
-import "./styeComponents/Carrito.css";
+import { AuthContext } from "../context/AuthProvider";
+
+import "./styeComponents/Shoppingcart.css";
 
 const ShoppingCart = () => {
-  const { cart, eliminarDelPedido } = useContext(ProductosContext);
+  const { cart, eliminarDelPedido, agregarACompras } = useContext(ProductosContext);
 
   const groupedCart = cart.reduce((acc, item) => {
     const existingItem = acc.find((cartItem) => cartItem.id === item.id);
@@ -17,6 +19,8 @@ const ShoppingCart = () => {
   }, []);
 
   const totalPrice = groupedCart.reduce((total, item) => total + item.price * item.quantity, 0);
+
+  const { user } = useContext(AuthContext); 
 
   return (
     <div className="Carrito">
@@ -71,6 +75,18 @@ const ShoppingCart = () => {
                 </tr>
               </tfoot>
             </Table>
+            {user ? (
+            <Button
+              variant="success"
+              onClick={() => agregarACompras(groupedCart)}
+              className="mt-3"
+            >
+              Finalizar Compra
+            </Button>
+            ) : (
+              <div></div>
+            )
+            }
           </div>
         )}
       </Container>

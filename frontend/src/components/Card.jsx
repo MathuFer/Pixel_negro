@@ -2,6 +2,11 @@ import { useContext, useEffect } from "react";
 import { ProductosContext } from "../context/ProductosProvider";
 import { Link } from "react-router-dom";
 import "../components/styeComponents/Card.css";
+import { AuthContext } from "../context/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
+
 
 const Card = () => {
   const { seleccionarProductosAleatorios, productos, productosAleatorios, addToCart, favoritos, toggleFavorito } = useContext(ProductosContext);
@@ -10,7 +15,11 @@ const Card = () => {
     seleccionarProductosAleatorios(); 
   }, [productos]);
 
+const { user } = useContext(AuthContext); 
+
+
   return (
+    
     <div className="productos">
       <div className="contenedor-producto">
         {productosAleatorios.map((product) => (
@@ -36,14 +45,23 @@ const Card = () => {
               <button className="anadir-boton" onClick={() => addToCart(product.id)}>
                 Añadir
               </button>
-              <div
-                className={`favorito-boton ${
-                  favoritos.some((fav) => fav.id === product.id) ? "favorito" : ""
-                }`}
-                onClick={() => toggleFavorito(product.id)}
-              >
-                ❤️
-              </div>
+              {user ? (
+                  <div
+                    className={`favorito-boton`}
+                    onClick={() => toggleFavorito(product.id)}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      style={{
+                        color: favoritos.some((fav) => fav.id === product.id) ? "red" : "gray",
+                        cursor: "pointer",
+                      }}
+                    />
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+
             </div>
           </div>
         ))}

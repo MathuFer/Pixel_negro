@@ -5,10 +5,10 @@ import Footer from "../components/Footer";
 import "./styleViews/MiPerfil.css";
 import Favoritos from "../components/Favoritos";
 import Navbar from "../components/Navbar";
+import Carrito from "../components/Carrito";
 
 const MiPerfil = () => {
   const { user } = useContext(AuthContext);
-
   return (
     <div>
       {user ? <Navbar2 /> : <Navbar />}
@@ -29,7 +29,12 @@ const MiPerfil = () => {
         </div>
         <div className="contenedor-compras">
           <div className="Datos-mis-compras">
-            <h2>Mis compras</h2>
+            <div className="titulo-mis-compras">
+              <h2>Mis compras</h2>
+            </div>
+            <div className="cuadro-carrito">
+                <Carrito />
+            </div>
           </div>
           <div className="Datos-mis-favoritos">
             <h2>Mis favoritos</h2>

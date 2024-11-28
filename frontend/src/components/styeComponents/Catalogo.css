@@ -75,9 +75,9 @@
     background-color: #d39e00;
   }
 
-  .favorito-boton-catalogo{
-    cursor: pointer;
-    transition: background-color 0.3s;
+  .favorito-boton{
+    text-align: right;
+    font-size: 20px;
 
   }
 

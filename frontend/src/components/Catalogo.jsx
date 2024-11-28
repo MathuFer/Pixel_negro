@@ -2,6 +2,11 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductosContext } from "../context/ProductosProvider";
 import "./styeComponents/Catalogo.css";
+import { AuthContext } from "../context/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+
+
 
 function Catalogo() {
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -19,6 +24,9 @@ function Catalogo() {
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
   };
+
+  const { user } = useContext(AuthContext); 
+
 
   return (
     <div className="Galeria">
@@ -43,14 +51,23 @@ function Catalogo() {
       <div className="productos-listado">
         {filteredProducts.map((product) => (
           <div key={product.id} className="producto-galeria">
-            <div
-              className={`favorito-boton-catalogo ${
-                favoritos.some((fav) => fav.id === product.id) ? "favorito" : ""
-              }`}
-              onClick={() => toggleFavorito(product.id)}
-            >
-              ❤️
-            </div>
+            {user ? (
+              <div
+                className={`favorito-boton`}
+                onClick={() => toggleFavorito(product.id)}
+              >
+                <FontAwesomeIcon
+                  icon={faHeart}
+                  style={{
+                    color: favoritos.some((fav) => fav.id === product.id) ? "red" : "gray",
+                    cursor: "pointer",
+                  }}
+                />
+              </div>
+                ) : (
+              <div></div>
+            )}
+
             <img src={product.img} alt={product.name} className="producto-imagen" />
             <h2>{product.name}</h2>
             <p>{product.desc}</p>

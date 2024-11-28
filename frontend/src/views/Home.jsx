@@ -7,7 +7,7 @@ import Footer from "../components/Footer";
 import { AuthContext } from "../context/AuthProvider";
 
 const Home = () => {
-  const { user } = useContext(AuthContext); // Obtén el usuario del contexto
+  const { user } = useContext(AuthContext); 
 
   return (
     <div className="homepage">

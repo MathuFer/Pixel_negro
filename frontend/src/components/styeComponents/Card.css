@@ -95,11 +95,6 @@
   transition: background-color 0.3s;
 }
 
-.favorito-boton{
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
 @media (max-width: 768px) {
   .producto {
     width: 90%;
