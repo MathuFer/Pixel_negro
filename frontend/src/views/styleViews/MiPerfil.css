@@ -147,19 +147,42 @@
     .contenedor-usuario{
         flex-direction: column;
         width: 100%;
+        height: 90vh;
+        
     }
 
     .Datos-usuario{
         width: 100%;
+        min-height: 50%;
+        max-height: 50%;
+        
+        
     }
     
     .contenedor-compras{
         width: 100%;
+        min-height: 50%;
+        max-height: 50%;
 
     }
 
+    .Datos-mis-compras{
+        width: 100%;
+    }
+
+
+    .titulo-mis-compras h2 {
+        margin: 0px;
+        font-size: medium;
+    }
+
     .Datos-mis-favoritos h2{
-        margin: 5px 0px;
+        margin-top: 2px;
+        font-size: medium;
+    }
+    .Datos-mis-favoritos {
+        width: 100%;
+        
     }
     
     .favoritos-listado {
@@ -167,29 +190,44 @@
         flex-wrap: nowrap;
         overflow-x: auto;
         scroll-behavior: smooth; 
-        height: 100%;
-        width: 85%;
-        margin: 0 auto;
         scrollbar-width: thin;
+        height: 100%;
+        width: 100%;
+        margin: 0px auto;
+        padding: 0px ;
+        font-size: x-small;
+        
+        
+    }
+
+    .favoritos-listado h6{
+        font-size: small;
+        margin: 0px;
+        
     }
     
     .favorito-item {
-        flex: 30%; 
-        margin: 40px 5px; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         min-width: 30%;
-        padding: 25px 0px;
-        height: 100%;
+        padding: 2px 1px;
+        height: auto;
         border: 1px solid white;
         box-shadow: 1px 1px 5px rgb(255, 255, 255);
 
     }
 
     .favorito-item img{
-        width: 85%;
-        height: 80%;
+        width: 25%;
+        height: 25%;
         object-fit: cover;
+        
     }
-    
+    .eliminar-favorito-btn {
+        margin: 0px;
+        
+    }
   }
   
   @media (max-width: 500px) {
