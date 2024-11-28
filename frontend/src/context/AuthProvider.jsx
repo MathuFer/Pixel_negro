@@ -1,10 +1,12 @@
-import React, { createContext, useState, useEffect } from "react";
+/* eslint-disable no-unused-vars */
+import React, { useState, createContext, useEffect } from "react";
 import { getToken, removeToken } from "../components/tokenUtils";
 import { URL_BASE } from "../config/constants";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
+// eslint-disable-next-line react/prop-types
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -14,7 +16,7 @@ const AuthProvider = ({ children }) => {
       const token = getToken();
       if (token) {
         try {
-          const response = await fetch(`${URL_BASE}/api/auth/profile`, {
+          const response = await fetch(URL_BASE + "/api/auth/profile", {
             method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,
@@ -24,58 +26,41 @@ const AuthProvider = ({ children }) => {
             const userData = await response.json();
             setUser(userData);
             setIsAuthenticated(true);
-            localStorage.setItem("authUser", JSON.stringify(userData)); // Guardar en localStorage
           } else {
             removeToken();
-            localStorage.removeItem("authUser");
           }
         } catch (error) {
           console.error("Error al verificar autenticación:", error);
           removeToken();
-          localStorage.removeItem("authUser");
-        }
-      } else {
-        const storedUser = localStorage.getItem("authUser");
-        if (storedUser) {
-          setUser(JSON.parse(storedUser));
-          setIsAuthenticated(true);
         }
       }
       setLoading(false);
     };
-
     checkAuthStatus();
   }, []);
 
-  const login = (token, userData) => {
-    setIsAuthenticated(true);
-    setUser(userData);
-    localStorage.setItem("authUser", JSON.stringify(userData));
+  const login = (token) => {
     localStorage.setItem("token", token);
+    setIsAuthenticated(true);
   };
 
   const logout = () => {
+    removeToken();
     setIsAuthenticated(false);
     setUser(null);
-    removeToken();
-    localStorage.removeItem("authUser");
   };
 
+  //Renderiza el componente sólo cuando la carga esté completa
   if (loading) {
     return <p>Cargando...</p>;
   }
 
   return (
-    <AuthContext.Provider 
-        value={{ 
-          user, 
-          isAuthenticated, 
-          login, 
-          logout 
-        }}>
+    <AuthContext.Provider value={{ user, isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
 export default AuthProvider;
+export { AuthContext };

@@ -5,56 +5,76 @@ import { URL_BASE } from "../config/constants";
 import Navbar2 from "../components/Navbar2";
 import Footer from "../components/Footer";
 import Favoritos from "../components/Favoritos";
-import Navbar from "../components/Navbar";
 import "./styleViews/MiPerfil.css";
+import { useParams } from "react-router-dom";
 
 const MiPerfil = () => {
   const { loggedInUser } = useContext(ProductosContext);
-  const [compras, setCompras] = useState([]);
+  const { id } = useParams();
+  const [pedidos, setPedidos] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCompras = async () => {
+    const fetchPedidos = async () => {
       try {
         const token = getToken();
         if (!token) {
           throw new Error("Token no encontrado");
         }
+        const responsePedidos = await fetch(
+          `${URL_BASE}/api/pedidos/pedidos`, // URL para pedidos del usuario
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-        // Obtener compras
-        const responseCompras = await fetch(`${URL_BASE}/api/compras`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-
-        if (!responseCompras.ok) {
+        if (!responsePedidos.ok) {
           throw new Error(
-            `Error al obtener compras: ${responseCompras.status}`
+            `Error al obtener pedidos: ${responsePedidos.status}`
           );
         }
 
-        const dataCompras = await responseCompras.json();
+        const dataPedidos = await responsePedidos.json();
 
-        // Obtener detalles de cada compra
-        const comprasConDetalles = await Promise.all(
-          dataCompras.map(async (compra) => {
-            const responseDetalles = await fetch(
-              `${URL_BASE}/api/compras/detalles/${compra.id}`, // Ruta específica de detalles
-              { headers: { Authorization: `Bearer ${token}` } }
-            );
+        // Validar si no hay pedidos
+        if (!Array.isArray(dataPedidos) || dataPedidos.length === 0) {
+          setPedidos([]); // No hay pedidos
+          return;
+        }
 
-            if (!responseDetalles.ok) {
-              throw new Error(
-                `Error al obtener detalles de la compra ${compra.id}: ${responseDetalles.status}`
+        // Para cada pedido, obtener detalles
+        const pedidosConDetalles = await Promise.all(
+          dataPedidos.map(async (pedido) => {
+            try {
+              const responseDetalles = await fetch(
+                `${URL_BASE}/api/pedidos/detalles`, // URL con id del pedido
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                  },
+                }
               );
-            }
 
-            const dataDetalles = await responseDetalles.json();
-            return { ...compra, detalles: dataDetalles };
+              if (!responseDetalles.ok) {
+                console.warn(
+                  `Error al obtener detalles del pedido ${pedido.id}: ${responseDetalles.status}`
+                );
+                return { ...pedido, detalles: [] }; // Continuar aunque falle
+              }
+
+              const dataDetalles = await responseDetalles.json();
+              return { ...pedido, detalles: dataDetalles };
+            } catch (detalleError) {
+              console.warn(`Error al procesar detalles del pedido ${pedido.id}`);
+              return { ...pedido, detalles: [] }; // Manejar errores por pedido
+            }
           })
         );
 
-        setCompras(comprasConDetalles);
+        setPedidos(pedidosConDetalles);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -62,43 +82,52 @@ const MiPerfil = () => {
       }
     };
 
-    fetchCompras();
-  }, []);
+    fetchPedidos();
+  }, [id]);
 
-  if (loading) return <p>Cargando...</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) {
+    return <p>Cargando...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div>
-      {loggedInUser ? <Navbar2 /> : <Navbar />}
+      <Navbar2 />
       <div className="contenedor-usuario">
         <div className="Datos-usuario">
-          <h1>Datos del Usuario</h1>
           {loggedInUser ? (
-            <div className="info-usuario">
-              <p><strong>ID: </strong> {loggedInUser.id}</p>
-              <p><strong>Nombre: </strong> {loggedInUser.nombre}</p>
-              <p><strong>Email: </strong> {loggedInUser.email}</p>
+            <div>
+              <h1>Bienvenido, {loggedInUser.Name}</h1>
+              <p>Email: {loggedInUser.Email}</p>
             </div>
           ) : (
-            <p>No hay usuario autenticado. Por favor, inicia sesión.</p>
+            <p>No se pudo cargar la información del usuario.</p>
           )}
         </div>
-
         <div className="contenedor-compras">
           <div className="Datos-mis-compras">
-            <h2>Mis Compras</h2>
-            <div className="compras-container">
-              {compras.length > 0 ? (
-                <ul className="compras-list">
-                  {compras.map((compra) => (
-                    <li key={compra.id} className="compra-item">
-                      <h3>Compra #{compra.id}</h3>
+            <h2>Mis compras</h2>
+            <div className="pedidos-container">
+              {Array.isArray(pedidos) && pedidos.length > 0 ? (
+                <ul className="pedidos-list">
+                  {pedidos.map((pedido) => (
+                    <li key={pedido.id} className="pedido-item">
+                      <div className="pedido-header">
+                        <h3>Pedido #{pedido.id}</h3>
+                      </div>
                       <ul className="detalles-list">
-                        {compra.detalles.map((detalle) => (
+                        {pedido.detalles.map((detalle) => (
                           <li key={detalle.id} className="detalle-item">
-                            <span>{detalle.nombre}</span> -{" "}
-                            <span>Cantidad: {detalle.cantidad}</span>
+                            <span className="detalle-nombre">
+                              {detalle.nombre}
+                            </span>{" "}
+                            -{" "}
+                            <span className="detalle-cantidad">
+                              Cantidad: {detalle.cantidad}
+                            </span>
                           </li>
                         ))}
                       </ul>
@@ -106,14 +135,15 @@ const MiPerfil = () => {
                   ))}
                 </ul>
               ) : (
-                <p>No hay compras registradas.</p>
+                <p>No hay pedidos registrados.</p>
               )}
             </div>
           </div>
-
           <div className="Datos-mis-favoritos">
-            <h2>Mis Favoritos</h2>
-            <Favoritos />
+            <h2>Mis favoritos</h2>
+            <div className="favoritos-listado">
+              <Favoritos />
+            </div>
           </div>
         </div>
       </div>
@@ -125,61 +155,4 @@ const MiPerfil = () => {
 export default MiPerfil;
 
 
-
-
-
-
-// import React, { useContext } from "react";
-// import { AuthContext } from "../context/AuthProvider";
-// import Navbar2 from "../components/Navbar2";
-// import Footer from "../components/Footer";
-// import "./styleViews/MiPerfil.css";
-// import Favoritos from "../components/Favoritos";
-// import Navbar from "../components/Navbar";
-// import Carrito from "../components/Carrito";
-
-// const MiPerfil = () => {
-//   const { user } = useContext(AuthContext);
-  
-//   return (
-//     <div>
-//       {user ? <Navbar2 /> : <Navbar />}
-//       <div className="contenedor-usuario">
-//         <div className="Datos-usuario">
-//           <div className="titulo-usuario">
-//             <h1>Datos del Usuario</h1>
-//           </div>
-//           {user ? (
-//             <div className="info-usuario">
-//               <p><strong>ID: N°</strong> {user.id}</p>
-//               <p><strong>Nombre: </strong> {user.Name}</p>
-//               <p><strong>Email: </strong> {user.Email}</p>
-//             </div>
-//           ) : (
-//             <p>No hay usuario autenticado. Por favor, inicia sesión.</p>
-//           )}
-//         </div>
-//         <div className="contenedor-compras">
-//           <div className="Datos-mis-compras">
-//             <div className="titulo-mis-compras">
-//               <h2>Mis compras</h2>
-//             </div>
-//             <div className="cuadro-carrito">
-//                 <Carrito />
-//             </div>
-//           </div>
-//           <div className="Datos-mis-favoritos">
-//             <h2>Mis favoritos</h2>
-//             <div className="favoritos-listado">
-//               <Favoritos />
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default MiPerfil;
 

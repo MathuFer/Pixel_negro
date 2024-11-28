@@ -45,12 +45,7 @@ const Navbar2 = () => {
           </Link>
         </div>
         <div className="d-flex justify-content-end align-items-center">
-            {user && (
-              <Link to={`/perfil/${user.id}`} className="logo-nombre mx-1 mb-0" >
-                <h6 className="logo-nombre mx-1 mb-0">Mi Perfil |</h6>
-              </Link>
-            )}
-              {user && <h6 className="logo-nombre mx-1 mb-0" onClick={handleLogout}>Cerrar sesión</h6>}
+              <h6 className="logo-nombre mx-1 mb-0" onClick={handleLogout}>Cerrar sesión</h6>
 
         </div>
       </div>
