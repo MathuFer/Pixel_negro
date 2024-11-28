@@ -3,8 +3,8 @@ import { Container, Form, Button, Alert } from "react-bootstrap";
 import "../components/styeComponents/RegistrationForm.css";
 
 
-const URL_BASE = import.meta.env.VITE_URL_BASE
-console.log(URL_BASE)
+const URL_BASE = import.meta.env.VITE_URL_BASE;
+console.log(URL_BASE);
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({

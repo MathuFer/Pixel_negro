@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ProductosContext } from "../context/ProductosProvider";
 import { getToken } from "../components/tokenUtils";
-import { URL_BASE } from "../config/constants";
 import Navbar2 from "../components/Navbar2";
 import Footer from "../components/Footer";
 import Favoritos from "../components/Favoritos";
-import "./styleViews/MiPerfil.css";
 import { useParams } from "react-router-dom";
+import "./styleViews/MiPerfil.css";
+
+const URL_BASE = import.meta.env.VITE_URL_BASE;
+console.log(URL_BASE);
 
 const MiPerfil = () => {
   const { loggedInUser } = useContext(ProductosContext);
