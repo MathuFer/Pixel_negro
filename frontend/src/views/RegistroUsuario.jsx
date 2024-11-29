@@ -1,4 +1,3 @@
-import Navbar from "../components/Navbar";
 import RegistrationForm from "../components/RegistrationForm";
 import WelcomeMessage from "../components/WelcomeMessage";
 import PremiumBenefits from "../components/PremiumBenefits";
@@ -10,7 +9,6 @@ import "../views/styleViews/RegistroUsuario.css";
 const RegistroUsuario = () => {
   return (
     <>
-      <Navbar />
       <div className="Registro">
         <RegistrationForm />
         <div className="RegistroMensajes">

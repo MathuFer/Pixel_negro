@@ -20,6 +20,10 @@ const Navbar2 = () => {
     navigate("/");
   };
 
+  const usuarioID = user?.usuariosid || null;
+  console.log(user)
+
+
 
   return (
     <div className="navbar fixed-top bg-black text-white py-3">
@@ -45,8 +49,14 @@ const Navbar2 = () => {
           </Link>
         </div>
         <div className="d-flex justify-content-end align-items-center">
-              <h6 className="logo-nombre mx-1 mb-0" onClick={handleLogout}>Cerrar sesión</h6>
-
+              <Link
+                className="logo-nombre mx-1 mb-0"
+                to={`/perfil/${usuarioID}`}>
+                <h6 className="mb-0">Mi Perfil |</h6>
+              </Link>              
+            <h6 className="mb-0" onClick={handleLogout}>
+             Cerrar sesión
+            </h6>
         </div>
       </div>
     </div>

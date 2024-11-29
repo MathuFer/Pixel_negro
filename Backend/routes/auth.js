@@ -6,7 +6,8 @@ const router = express.Router();
 require("dotenv").config();
 const { generateToken, authenticateToken } = require("../middleware");
 
-// Configura la conexión a la base de datos
+// Configura la conexión a la base de datos 
+
 const pool = new Pool({
   user: process.env.DATABASE_USER,
   host: process.env.DATABASE_HOST,
@@ -32,6 +33,7 @@ router.post("/login", async (req, res) => {
     }
 
     console.log("Usuario encontrado:", user);
+    
 
     const token = generateToken(user);
     res.json({ token: token, usuariosid: user.usuariosid }); // Aquí se agrega usuarioID
@@ -84,18 +86,20 @@ router.get("/profile", authenticateToken, async (req, res) => {
     console.log("User ID from token:", req.user.id); //Imprime el ID desde req.user.id
     const userId = req.user.id;
     const result = await pool.query(
-      "SELECT nombre, email, user_type FROM usuarios WHERE usuariosID = $1",
+      "SELECT usuariosID, nombre, email, user_type FROM usuarios WHERE usuariosID = $1",
       [userId]
     );
     const userProfile = result.rows[0];
     if (!userProfile) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
+    console.log("Perfil de usuario:", userProfile);
     res.json(userProfile);
   } catch (err) {
     console.error("Error al obtener el perfil del usuario:", err);
     res.status(500).json({ message: "Error del servidor" });
   }
+  
 });
 
 module.exports = router;

@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const secretKey = process.env.JWT_SECRET;
 
+
 // Función para generar un token JWT
 const generateToken = (user) => {
   // Asegúrate de que user.usuariosid exista (minúscula "i")
@@ -16,9 +17,20 @@ const generateToken = (user) => {
 const authenticateToken = (req, res, next) => {
   console.log("Middleware authenticateToken ejecutado.");
   const authHeader = req.headers["authorization"];
-  console.log("Authorization header:", authHeader);
-  const token = authHeader && authHeader.split(" ")[1];
-  console.log("Token:", token);
+console.log("Authorization header recibido:", authHeader);
+if (!authHeader) {
+  return res.status(401).json({ message: "Encabezado Authorization faltante" });
+}
+const token = authHeader.split(" ")[1];
+if (!token) {
+  console.error("El token no fue extraído correctamente.");
+  return res.status(401).json({ message: "Token faltante" });
+}
+console.log("Token extraído:", token);
+
+
+
+  
 
   if (!token) {
     return res.status(401).json({ message: "Token faltante" });

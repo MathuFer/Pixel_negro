@@ -37,10 +37,10 @@ const Navbar = () => {
         </div>
         <div className="d-flex justify-content-end align-items-center">
           <Link to="/Registro" className="logo-nombre mx-1 mb-0">
-            <h6>Registrarse |</h6>
+            <h6 className="mb-0">Registrarse |</h6>
           </Link>
           <Link to="/InicioSesion" className="logo-nombre mx-1 mb-0">
-            <h6>Iniciar sesión</h6>
+            <h6 className="mb-0">Iniciar sesión</h6>
           </Link>
         </div>
       </div>
