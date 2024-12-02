@@ -15,6 +15,8 @@ const MiPerfil = () => {
   const [pedidos, setPedidos] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [productos, setProductos] = useState({});
+
   console.log(URL_BASE);
 
   useEffect(() => {
@@ -80,7 +82,25 @@ const MiPerfil = () => {
   
     fetchPedidos();
   }, [id]);
-         
+        
+  useEffect(() => {
+    const fetchProductos = async () => {
+      try {
+        const response = await fetch(`${URL_BASE}/api/productos`); // URL de productos
+        if (!response.ok) {
+          throw new Error(`Error al obtener productos: ${response.status}`);
+        }
+        const dataProductos = await response.json();
+        setProductos(dataProductos);
+      } catch (error) {
+        console.error("Error al obtener productos:", error.message);
+      }
+    };
+
+    fetchProductos();
+  }, []);
+
+  
             
 if (loading) {
 return <p>Cargando...</p>;
@@ -123,14 +143,25 @@ console.log("Datos del usuario:", user);
                         <div className="detalles-list">
                           {pedido.detalles && pedido.detalles.length > 0 ? (
                             <div>
-                              {pedido.detalles.map((detalle, index) => (
-                                <ul key={index} className="detalle-item">
-                                  <li>Producto ID: {detalle.productosid}</li>
-                                  <li>Cantidad: {detalle.cantidad}</li> 
-                                  <li>Total: {detalle.sub_total.toLocaleString("es-CL", {style: "currency",currency: "CLP",})}</li>
-                                 
-                                </ul>
-                              ))}
+                              {pedido.detalles.map((detalle, index) => {
+                                const producto = productos.find((p) => p.productosid === detalle.productosid);
+                                const nombreProducto = producto ? producto.descripcion : "Producto no encontrado";
+
+                                return (
+                                  <ul key={index} className="detalle-item">
+                                    <li>Producto: {nombreProducto}</li>
+                                    <li>Cantidad: {detalle.cantidad}</li>
+                                    <li>
+                                      Total:{" "}
+                                      {detalle.sub_total.toLocaleString("es-CL", {
+                                        style: "currency",
+                                        currency: "CLP",
+                                      })}
+                                    </li>
+                                  </ul>
+                                );
+                              })}
+
                             </div>
                           ) : (
                             <p>No hay detalles disponibles para este pedido.</p>
