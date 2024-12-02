@@ -199,132 +199,98 @@
 
    
 
-
 @media (max-width: 768px) {
-    .contenedor-usuario{
+    .contenedor-usuario {
         flex-direction: column;
         width: 100%;
-        height: 90vh;
-        
-    }
-
-    .Datos-usuario{
-        width: 100%;
-        min-height: 50%;
-        max-height: 50%;
-        
-        
-    }
-    
-    .contenedor-compras{
-        width: 100%;
-        min-height: 50%;
-        max-height: 50%;
-
-    }
-
-    .Datos-mis-compras{
-        width: 100%;
-    }
-
-
-    .titulo-mis-compras h2 {
-        margin: 0px;
-        font-size: medium;
-    }
-
-    .Datos-mis-favoritos h2{
-        margin-top: 2px;
-        font-size: medium;
-    }
-    .Datos-mis-favoritos {
-        width: 100%;
-        
-    }
-    
-    .favoritos-listado {
-        display: flex;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        scroll-behavior: smooth; 
-        scrollbar-width: thin;
-        height: 100%;
-        width: 100%;
-        margin: 0px auto;
-        padding: 0px ;
-        font-size: x-small;
-        
-        
-    }
-
-    .favoritos-listado h6{
-        font-size: small;
-        margin: 0px;
-        
-    }
-    
-    .favorito-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        min-width: 30%;
-        padding: 2px 1px;
         height: auto;
-        border: 1px solid white;
-        box-shadow: 1px 1px 5px rgb(255, 255, 255);
-
+        padding: 20px; 
     }
 
-    .favorito-item img{
-        width: 25%;
-        height: 25%;
-        object-fit: cover;
-        
-    }
-    .eliminar-favorito-btn {
-        margin: 0px;
-        
-    }
-  }
-  
-  @media (max-width: 500px) {
-    .contenedor-usuario{
-        flex-direction: column;
+    .Datos-usuario, .contenedor-compras {
         width: 100%;
     }
 
-    .Datos-usuario{
+    .Datos-mis-compras, .Datos-mis-favoritos {
         width: 100%;
     }
-    
-    .contenedor-compras{
-        width: 100%;
 
-    }
-
-    .Datos-mis-favoritos h2{
-        margin: 5px 0px;
-    }
-    
     .favoritos-listado {
-        display: flex;
-        flex-wrap: nowrap;
+        font-size: xx-small;
+    }
+
+    .favorito-item {
+        min-width: 40%; 
+        max-width: 40%;
+    }
+
+    .favorito-item img {
+        width: 75%; 
+        height: 75%;
+    }
+
+    .pedido-item {
+        flex-direction: row;
+        min-width: 100%; 
+        margin: 5px 10px;
+        min-height: 100%;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .pedidos-list{
+        flex-direction: column;
         overflow-x: auto;
         scroll-behavior: smooth; 
-        height: 100%;
-        width: 85%;
-        margin: 0 auto;
         scrollbar-width: thin;
-    }
-    
-    .favorito-item {
-        flex: 30%; 
-        margin: 40px 5px; 
-        min-width: 30%;
-        padding: 25px 0px;
-        height: 100%;
-        border: 1px solid white;
-        box-shadow: 1px 1px 5px rgb(255, 255, 255);
 
     }
-  }
+}
+
+@media (max-width: 500px) {
+    .contenedor-usuario {
+        flex-direction: column;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .Datos-usuario, .contenedor-compras {
+        width: 100%;
+    }
+
+    .favoritos-listado {
+        width: 100%;
+        font-size: xx-small;
+    }
+
+    .favorito-item {
+        min-width: 60%; 
+        max-width: 60%;
+        margin: 15px auto;
+    }
+
+    .favorito-item img {
+        width: 80%; 
+        height: 80%;
+    }
+
+
+    .pedido-item {
+        flex-direction: row;
+        min-width: 90%; 
+        margin: 5px 0;
+        min-height: 100%;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .pedidos-list{
+        flex-direction: column;
+        overflow-x: auto;
+        scroll-behavior: smooth; 
+        scrollbar-width: thin;
+
+    }
+
+
+}
