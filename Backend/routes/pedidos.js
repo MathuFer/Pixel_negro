@@ -39,23 +39,30 @@ router.get("/pedidos", authenticateToken, async (req, res) => {
 });
 
 // Ruta para obtener datos de la tabla detalle pedidos (modificada)
+
 router.get("/detalles", authenticateToken, async (req, res) => {
-  const userId = req.user.id; // Obtén el userId del objeto req.user
+  const userId = req.user.id;
+  const { pedidoId } = req.query; // Obtén el pedidoId de la query
+
+  if (!pedidoId) {
+    return res.status(400).json({ message: "pedidoId es requerido" });
+  }
 
   try {
     const result = await pool.query(
-      "SELECT * FROM detalle_pedidos WHERE usuariosid = $1",
-      [userId]
+      "SELECT * FROM detalle_pedidos WHERE usuariosid = $1 AND pedidosid = $2",
+      [userId, pedidoId]
     );
-    const orders = result.rows;
 
-    if (orders.length === 0) {
-      return res.status(200).json({
-        message: "No se encontraron detalles de pedidos para este usuario",
-      }); //200 OK
+    const detalles = result.rows;
+
+    if (detalles.length === 0) {
+      return res
+        .status(200)
+        .json({ message: "No se encontraron detalles para este pedido" });
     }
 
-    res.json(orders);
+    res.json(detalles);
   } catch (err) {
     console.error("Error al obtener detalles de pedidos:", err);
     res.status(500).json({ message: "Error del servidor" });
@@ -63,34 +70,43 @@ router.get("/detalles", authenticateToken, async (req, res) => {
 });
 
 // Ruta para crear un nuevo pedido (modificada)
+
 router.post("/nuevo", authenticateToken, async (req, res) => {
-  const userId = req.user.id; // Obtén el ID del usuario desde req.user
-  const { productos } = req.body; // usuariosID ya no es necesario en el body
-  const date = new Date();
+  const userId = req.user.id; // El ID del usuario autenticado
+  const { productos } = req.body;
+
+  if (!productos || productos.length === 0) {
+    return res.status(400).json({ message: "El carrito está vacío." });
+  }
+
+  const fecha = new Date();
 
   try {
-    // Inserta el nuevo pedido
-    const result = await pool.query(
-      "INSERT INTO pedidos (usuariosID, fecha) VALUES ($1, $2) RETURNING pedidosid",
-      [userId, date]
+    // Crear un nuevo pedido
+    const pedidoResult = await pool.query(
+      "INSERT INTO pedidos (usuariosID, fecha) VALUES ($1, $2) RETURNING pedidosID",
+      [userId, fecha]
     );
-    const pedidosID = result.rows[0].pedidosid;
+    const pedidoID = pedidoResult.rows[0].pedidosid;
 
-    // Inserta los detalles del pedido
-    for (const producto of productos) {
-      const { productosID, cantidad, precio } = producto;
-      const subTotal = cantidad * precio; // Corrección: sub_total -> subTotal
+    // Insertar los detalles del pedido
+    const detallePromises = productos.map((producto) => {
+      const productosID = parseInt(producto.id.slice(1), 10);
+      const {quantity: cantidad, price: precio } = producto;
+      const sub_total = Math.round(cantidad * precio); 
 
-      await pool.query(
+      return pool.query(
         "INSERT INTO detalle_pedidos (pedidosID, usuariosID, productosID, cantidad, precio, sub_total) VALUES ($1, $2, $3, $4, $5, $6)",
-        [pedidosID, userId, productosID, cantidad, precio, subTotal]
+        [pedidoID, userId, productosID, cantidad, Math.round(precio), sub_total]
       );
-    }
+    });
 
-    res.status(201).json({ message: "Pedido creado con éxito", pedidosID });
-  } catch (err) {
-    console.error("Error al crear pedido:", err);
-    res.status(500).json({ message: "Error del servidor", error: err.message }); // Incluye el mensaje de error
+    await Promise.all(detallePromises);
+
+    res.status(201).json({ message: "Pedido creado con éxito", pedidoID });
+  } catch (error) {
+    console.error("Error al registrar el pedido:", error);
+    res.status(500).json({ message: "Error interno del servidor" });
   }
 });
 

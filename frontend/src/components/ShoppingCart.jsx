@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { Container, Table, Button } from "react-bootstrap";
 import { ProductosContext } from "../context/ProductosProvider";
 import { AuthContext } from "../context/AuthProvider";
@@ -6,7 +7,7 @@ import { AuthContext } from "../context/AuthProvider";
 import "./styeComponents/Shoppingcart.css";
 
 const ShoppingCart = () => {
-  const { cart, eliminarDelPedido, agregarACompras } = useContext(ProductosContext);
+  const { cart, eliminarDelPedido, registrarCompra, setCart } = useContext(ProductosContext);
 
   const groupedCart = cart.reduce((acc, item) => {
     const existingItem = acc.find((cartItem) => cartItem.id === item.id);
@@ -50,8 +51,13 @@ const ShoppingCart = () => {
                         className="table-img"
                       />
                     </td>
-                    <td>{item.desc}</td>
-                    <td>{item.price.toLocaleString("es-CL", { style: "currency", currency: "CLP" })}</td>
+                    <td>{item.desc || "Sin descripción"}</td>
+                    <td>
+                      {item.price.toLocaleString("es-CL", {
+                        style: "currency",
+                        currency: "CLP",
+                      })}
+                    </td>                    
                     <td>{item.quantity}</td>
                     <td>
                       <Button
@@ -78,13 +84,22 @@ const ShoppingCart = () => {
             {user ? (
             <Button
               variant="success"
-              onClick={() => agregarACompras(groupedCart)}
+              onClick={async () => {
+                await registrarCompra(); 
+                setCart([]); 
+                alert("Compra finalizada exitosamente.");
+              }}
               className="mt-3"
             >
               Finalizar Compra
             </Button>
             ) : (
-              <div></div>
+              <div>
+                  <h6>Para finalizar su compra debe iniciar sesión</h6>
+                <Link to="/InicioSesion">
+                  <h6>Iniciar sesión</h6>
+                </Link>
+              </div>
             )
             }
           </div>

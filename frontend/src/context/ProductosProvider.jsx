@@ -1,4 +1,8 @@
 import { createContext, useEffect, useState } from "react";
+import { getToken } from '../components/tokenUtils';
+
+const URL_BASE = import.meta.env.VITE_URL_BASE;
+
 
 export const ProductosContext = createContext();
 
@@ -14,6 +18,7 @@ const ProductosProvider = ({ children }) => {
     return storedFavoritos ? JSON.parse(storedFavoritos) : [];
   });
   const [misCompras, setMisCompras] = useState([]); 
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -99,7 +104,6 @@ const ProductosProvider = ({ children }) => {
     const shuffled = [...productos].sort(() => Math.random() - 0.5);
     return shuffled.slice(0, count);
   };
-
   const seleccionarProductosAleatorios = () => {
     const productosMezclados = [...productos].sort(() => Math.random() - 0.5);
     const productosSeleccionados = productosMezclados.slice(0, 3);
@@ -115,6 +119,44 @@ const ProductosProvider = ({ children }) => {
     setMisCompras((prevCompras) => [...prevCompras, ...productos]);
     setCart([]); 
   };
+
+  // Registrar carrito en pedidos del usuario
+// Asegúrate de que el carrito sea un nuevo array cuando se vacíe.
+const registrarCompra = async () => {
+  try {
+    const token = getToken();
+    if (!token) {
+      throw new Error("Token no encontrado");
+    }
+
+    // Verifica que cart tenga los productos correctos antes de enviarlo
+    console.log("Productos en el carrito:", cart);
+
+    const response = await fetch(`${URL_BASE}/api/pedidos/nuevo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ productos: cart }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al registrar la compra");
+    }
+
+    const data = await response.json();
+    console.log("Compra registrada:", data);
+
+    setCart([]); 
+
+  } catch (error) {
+    console.error("Error al registrar la compra:", error);
+  }
+};
+
+  
+
 
   return (
     <ProductosContext.Provider
@@ -136,6 +178,7 @@ const ProductosProvider = ({ children }) => {
         misCompras,
         eliminarDeMisCompras,
         agregarACompras,
+        registrarCompra,
       }}
     >
       {children}
