@@ -4,7 +4,7 @@ function TestCORS() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetch("/api/test") // Asegúrate de que la URL sea correcta, considerando el proxy de desarrollo si lo tienes
+    fetch("/api/test") 
       .then((response) => response.json())
       .then((data) => setMessage(data.message))
       .catch((error) => console.error("Error:", error));

@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "https://pixel-negro-dqdv.onrender.com/", // Reemplaza con tu URL de frontend
+  origin: "*", // Permite cualquier origen
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };

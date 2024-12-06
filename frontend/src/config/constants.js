@@ -1,1 +1,1 @@
-export const URL_BASE = "https://pixel-negro-dqdv.onrender.com/";
+export const URL_BASE = "http://localhost:3000";

@@ -3,7 +3,7 @@ import { Container, Form, Button, Alert } from "react-bootstrap";
 import "../components/styeComponents/RegistrationForm.css";
 
 
-const URL_BASE = import.meta.env.VITE_URL_BASE;
+const URL_BASE = import.meta.env.VITE_URL_BASE || "https://your-backend-url.onrender.com";
 console.log(URL_BASE);
 
 const RegistrationForm = () => {
