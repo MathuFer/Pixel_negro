@@ -6,10 +6,11 @@ const PORT = process.env.PORT || 3000;
 const cors = require("cors");
 
 const corsOptions = {
-  origin: "*", // Permite cualquier origen
+  origin: ["https://frontend-pn3x.onrender.com"], // Lista de orígenes permitidos
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
+
 
 app.use(express.json());
 app.use(cors(corsOptions));

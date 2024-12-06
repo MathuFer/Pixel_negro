@@ -22,7 +22,7 @@ function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoginError(""); // Limpia el error antes de intentar iniciar sesión
+    setLoginError(""); 
     console.log(formData);
     try {
       const response = await fetch(URL_BASE + "/api/auth/login", {
