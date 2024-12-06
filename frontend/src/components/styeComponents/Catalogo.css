@@ -45,7 +45,6 @@
     height: 250px;
     object-fit: cover;
     border-radius: 5px;
-   
  
   }
   
@@ -85,6 +84,15 @@
     margin: 10px;
     width: 80%;
     text-align: center;
+  }
+
+  .boton-crear-producto{
+    background-color: #d39e00;
+    padding: 5px 10px;
+    border-radius: 5px;
+    width: 70%;
+    text-decoration: none;
+    border-radius: 5px;
   }
 
 

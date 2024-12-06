@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { getToken } from '../components/tokenUtils';
 
 const URL_BASE = import.meta.env.VITE_URL_BASE;
+console.log(URL_BASE);
 
 
 export const ProductosContext = createContext();
@@ -121,8 +122,8 @@ const ProductosProvider = ({ children }) => {
   };
 
   // Registrar carrito en pedidos del usuario
-// Asegúrate de que el carrito sea un nuevo array cuando se vacíe.
-const registrarCompra = async () => {
+  
+  const registrarCompra = async () => {
   try {
     const token = getToken();
     if (!token) {
@@ -155,7 +156,28 @@ const registrarCompra = async () => {
   }
 };
 
-  
+// Agregar un producto
+
+const agregarProducto = async (producto) => {
+  try {
+    const response = await fetch(URL_BASE + "/api/productos/agregarproducto", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(producto),
+    });
+
+    if (!response.ok) {
+      throw new Error("Error al agregar el producto");
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+
 
 
   return (
@@ -179,6 +201,7 @@ const registrarCompra = async () => {
         eliminarDeMisCompras,
         agregarACompras,
         registrarCompra,
+        agregarProducto,
       }}
     >
       {children}

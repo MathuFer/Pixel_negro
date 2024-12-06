@@ -3,6 +3,7 @@ const router = express.Router();
 const { Pool } = require("pg");
 require("dotenv").config();
 
+
 // Configuración de conexión a la base de datos
 const pool = new Pool({
   user: process.env.DATABASE_USER,
@@ -40,5 +41,34 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: "Error del servidor" });
   }
 });
+
+
+// Ruta: Crear un nuevo producto 
+
+router.post("/agregarproducto", async (req, res) => {
+  const {name, desc, category, price} = req.body;
+
+  // Validar que los campos requeridos no estén vacíos
+  if (!name || !desc || !category || !price) {
+    return res.status(400).json({ message: "Todos los campos son obligatorios" });
+  }
+
+  try {
+    const query = `
+      INSERT INTO productos (nombre_producto, descripcion, categoria, precio, stock)
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
+    `;
+    const values = [name, desc, category, parseFloat(price), 100];
+    const result = await pool.query(query, values);
+
+    res.status(201).json(result.rows[0]);
+  } catch (error) {
+    console.error("Error al crear producto:", error);
+    res.status(500).json({ message: "Error del servidor" });
+  }
+});
+
+
 
 module.exports = router;

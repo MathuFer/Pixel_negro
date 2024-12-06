@@ -14,6 +14,7 @@ import Contacto from "./views/Contacto";
 import Shopping from "./views/Shopping";
 import VistaProducto from "./views/VistaProducto";
 import MiPerfil from "./views/MiPerfil";
+import CreacionProducto from "./components/CreacionProducto";
 
 function App() {
   const { isAuthenticated } = useContext(AuthContext);
@@ -31,6 +32,8 @@ function App() {
         <Route path="/cartShopping" element={<Shopping />} />
         <Route path="/product/:id" element={<VistaProducto />} />
         <Route path="/perfil/:id" element={<MiPerfil />} />
+        <Route path="/crear-producto" element={<CreacionProducto />} />
+
       </Routes>
     </>
   );

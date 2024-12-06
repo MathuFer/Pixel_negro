@@ -6,8 +6,6 @@ import { AuthContext } from "../context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-
-
 function Catalogo() {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const {
@@ -25,12 +23,17 @@ function Catalogo() {
     setSelectedCategory(e.target.value);
   };
 
-  const { user } = useContext(AuthContext); 
-
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="Galeria">
       <div className="Galeria-Filtro">
+        {user && (
+          <Link to="/crear-producto">
+            <button className="boton-crear-producto">Crear Producto</button>
+          </Link>
+        )}
+
         <h1>Tienda</h1>
         <hr />
         <div className="filtro">
@@ -64,23 +67,33 @@ function Catalogo() {
                   }}
                 />
               </div>
-                ) : (
+            ) : (
               <div></div>
             )}
 
-            <img src={product.img} alt={product.name} className="producto-imagen" />
-            <h2>{product.name}</h2>
-            <p>{product.desc}</p>
+            <img
+              src={product.img || "https://via.placeholder.com/150"}
+              alt={product.name || "Imagen no disponible"}
+              className="producto-imagen"
+            />
+            <h2>{product.name || "Nombre no disponible"}</h2>
+            <p>{product.desc || "Descripción no disponible"}</p>
             <p className="precio">
-              {product.price.toLocaleString("es-CL", {
-                style: "currency",
-                currency: "CLP",
-              })}
+              {product.price !== undefined && product.price !== null
+                ? product.price.toLocaleString("es-CL", {
+                    style: "currency",
+                    currency: "CLP",
+                  })
+                : "Precio no disponible"}
             </p>
-            <button className="ver-detalles" onClick={() => addToCart(product.id)}>
+            <button
+              className="ver-detalles"
+              onClick={() => addToCart(product.id)}
+              disabled={!product.id}
+            >
               Añadir
             </button>
-            <Link to={`/product/${product.id}`} className="ver-detalles">
+            <Link to={`/product/${product.id || "#"}`} className="ver-detalles">
               Ver detalles
             </Link>
           </div>
