@@ -5,14 +5,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const cors = require("cors");
 
-// const corsOptions = {
-//   origin: "http://localhost:5173", // Reemplaza con tu URL de frontend
-//   methods: ["GET", "POST", "PUT", "DELETE"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// };
+const corsOptions = {
+  origin: "https://pixel-negro-dqdv.onrender.com/", // Reemplaza con tu URL de frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Configura la conexión a la base de datos
 const pool = new Pool({
