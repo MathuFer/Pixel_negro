@@ -11,6 +11,9 @@ const pool = new Pool({
   password: process.env.DATABASE_PASSWORD,
   allowExitOnIdle: true,
   port: parseInt(process.env.DATABASE_PORT, 10), // Parsear a entero
+  ssl: {
+    rejectUnauthorized: false // Cambia esto según sea necesario
+  }  
 });
 
 // Ruta para obtener datos de la tabla usuario

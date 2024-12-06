@@ -11,6 +11,9 @@ const pool = new Pool({
   password: process.env.DATABASE_PASSWORD,
   port: parseInt(process.env.DATABASE_PORT, 10),
   allowExitOnIdle: true,
+  ssl: {
+    rejectUnauthorized: false // Cambia esto según sea necesario
+  }  
 });
 
 // Ruta: Obtener carrito
