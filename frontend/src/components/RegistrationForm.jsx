@@ -3,7 +3,7 @@ import { Container, Form, Button, Alert } from "react-bootstrap";
 import "../components/styeComponents/RegistrationForm.css";
 
 
-const URL_BASE = import.meta.env.VITE_URL_BASE || "https://pixel-negro-dqdv.onrender.com";
+export const URL_BASE = import.meta.env.VITE_URL_BASE;
 console.log(URL_BASE);
 
 const RegistrationForm = () => {
@@ -31,7 +31,7 @@ const RegistrationForm = () => {
     }
 
     try {
-      const response = await fetch(URL_BASE + "/auth/register", {
+      const response = await fetch(URL_BASE + "/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

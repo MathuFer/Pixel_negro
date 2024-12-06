@@ -25,7 +25,7 @@ function LoginForm() {
     setLoginError(""); 
     console.log(formData);
     try {
-      const response = await fetch(URL_BASE + "/auth/login", {
+      const response = await fetch(URL_BASE + "/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
