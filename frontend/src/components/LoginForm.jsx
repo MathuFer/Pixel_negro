@@ -3,7 +3,9 @@ import { Container, Form, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import "../components/styeComponents/LoginForm.css";
 import { AuthContext } from "../context/AuthProvider";
-import { URL_BASE } from "../config/constants";
+
+export const URL_BASE = import.meta.env.VITE_URL_BASE;
+console.log(URL_BASE);
 
 function LoginForm() {
   const [formData, setFormData] = useState({
